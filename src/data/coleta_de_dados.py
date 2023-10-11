@@ -54,11 +54,11 @@ def requisitar_abstract_inverted_index(id):
     
     return abstract_inverted_index
 
-def formatar_abstract(abstract_desformatado):
+def formatar_resumo(resumo_desformatado):
     
-    if abstract_desformatado is not None:
+    if resumo_desformatado is not None:
         todas_palavras = []
-        for termo, posicoes in abstract_desformatado.items():
+        for termo, posicoes in resumo_desformatado.items():
             for posicao in posicoes:
                 todas_palavras.insert(posicao, termo)
 
@@ -100,9 +100,9 @@ def processar_dataframe(df):
     
     df = criar_work_id(df)
     
-    df['abstract'] = df['workd_id'].apply(requisitar_abstract_inverted_index).apply(formatar_abstract)
+    df['resumo'] = df['workd_id'].apply(requisitar_abstract_inverted_index).apply(formatar_resumo)
     
-    df = df.loc[:, ['doi', 'title','abstract', 'publication_date', 'open_access', 'concepts']]
+    df = df.loc[:, ['doi', 'title','resumo', 'publication_date', 'open_access', 'concepts']]
     
     df['open_access'] = df['open_access'].apply(lambda x: x['is_oa'])
 

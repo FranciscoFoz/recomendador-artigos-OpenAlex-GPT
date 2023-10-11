@@ -153,8 +153,8 @@ def concatenar_arquivos_parquet(folder_path):
     
     
     
-#coletar_dados_e_salvar('2023-10-02','2023-10-08')
+coletar_dados_e_salvar('2023-10-02','2023-10-08')
 
-#processar_e_salvar_parquet('datasets_2023-10-02_to_2023-10-08', 'datasets_2023-10-02_to_2023-10-08_processados')
+processar_e_salvar_parquet('datasets_2023-10-02_to_2023-10-08', 'datasets_2023-10-02_to_2023-10-08_processados')
 
-#concatenar_arquivos_parquet('datasets_2023-10-02_to_2023-10-08_processados')
+concatenar_arquivos_parquet('datasets_2023-10-02_to_2023-10-08_processados')

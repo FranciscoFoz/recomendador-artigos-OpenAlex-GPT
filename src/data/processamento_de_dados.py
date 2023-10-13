@@ -11,13 +11,26 @@ def criar_work_id(df):
     
     return df
 
+
+
 def requisitar_abstract_inverted_index(id):
     
     url = f'https://api.openalex.org/works/{id}'
-
-    abstract_inverted_index = requests.get(url).json()['abstract_inverted_index']
     
-    return abstract_inverted_index
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+
+        abstract_inverted_index = response.json().get('abstract_inverted_index')
+
+        return abstract_inverted_index
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao fazer a solicitação: {e}")
+        return None
+    except Exception as e:
+        print(f"Erro inesperado: {e}")
+        return None
+
 
 def formatar_abstract(abstract_desformatado):
     
@@ -31,6 +44,8 @@ def formatar_abstract(abstract_desformatado):
         return texto_corrido
     else:
         return ""
+
+
 
 def extrair_concepts_scores(df):
     concept_data = []
@@ -78,14 +93,19 @@ def processar_dataframe(df):
 
     return df
 
+
+
 def processar_e_salvar_parquet(input_folder, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
     parquet_files = [file for file in os.listdir(input_folder) if file.endswith(".parquet")]
     
+    qtd_files = len(parquet_files)
+    
     try:
-        for parquet_file in parquet_files:
+        print(f'Total de arquivos: {qtd_files}')
+        for idx,parquet_file in enumerate(parquet_files):
             input_path = os.path.join(input_folder, parquet_file)
             df_original = pd.read_parquet(input_path)  
             df_processado = processar_dataframe(df_original) 
@@ -94,6 +114,7 @@ def processar_e_salvar_parquet(input_folder, output_folder):
             output_path = os.path.join(output_folder, output_file)
             
             df_processado.to_parquet(output_path, index=False)
+            print(f'Processando arquivo {idx+1} de {qtd_files}')
 
     except Exception as error:
         print(error)

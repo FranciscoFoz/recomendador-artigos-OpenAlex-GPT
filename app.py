@@ -90,28 +90,25 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     return df_filtrado_top
 
 
-def criar_html_com_artigos(df):
-    with open('./newsletter_template.html', 'r', encoding='utf-8') as file:
-        html_template = file.read()
-
-    html_artigos = ""
+def criar_markdown_com_artigos(df):
+    markdown_content = '# Newsletter de Artigos Científicos\n\n## Confira os artigos científicos recomendados nesta edição da nossa newsletter:\n\n'
 
     for i in range(5):
-        article_html = f"""
-            <div class="article">
-                <h2>{df['title'].iloc[i]}</h2>
-                <p>{df['abstract'].iloc[i]}</p>
-                <p class="date">Data de Publicação: {df['publication_date'].iloc[i]}</p>
-                <p class="doi">DOI: <a href="{df['doi'].iloc[i]}">{df['doi'].iloc[i]}</a></p>
-            </div>
-        """
-        html_artigos += article_html
+        article_markdown = f"## Artigo {i + 1}\n"
+        article_markdown += f"**Título**: [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
+        article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
+        article_markdown += f"**Data de Publicação**: {df['publication_date'].iloc[i]}\n\n"
+        article_markdown += f"**DOI**: {df['doi'].iloc[i]}\n\n"
+        markdown_content += article_markdown
 
-    html_template = html_template.replace("<!-- ARTICLES_GO_HERE -->", html_artigos)
+    # Nome do arquivo de saída
+    output_file = 'newsletter_final.md'
 
-    with open('./newsletter_final.html', 'w', encoding='utf-8') as file:
-        file.write(html_template)
+    # Escrever o conteúdo no arquivo Markdown
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write(markdown_content)
 
+    return markdown_content
 #--------------------------------------------------------------------------------------------------------------------
 
 #IMPORTANDO DADOS
@@ -163,8 +160,7 @@ termos = st_tags(
 
 if st.button("Recomende"):
     df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
-    print(df)
-    criar_html_com_artigos(df)
-    
+    st.markdown(criar_markdown_com_artigos(df))
+    print(criar_markdown_com_artigos(df))
 
 

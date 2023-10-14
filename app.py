@@ -87,15 +87,30 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     
     df_filtrado_top = df_filtrado.head(5).reset_index(drop=True).loc[:,['doi','title','abstract','publication_date']]
 
-    output = ""
-    for i in range(5):
-        output += f"TÍTULO: {df_filtrado_top['title'].iloc[i]}\n"
-        output += f"RESUMO: {df_filtrado_top['abstract'].iloc[i]}\n"
-        output += f"DATA DE PUBLICAÇÃO: {df_filtrado_top['publication_date'].iloc[i]}\n"
-        output += f"DOI: {df_filtrado_top['doi'].iloc[i]}\n"
-        output += 100*"-"+"\n"
+    return df_filtrado_top
 
-    return output
+
+def criar_html_com_artigos(df):
+    with open('./newsletter_template.html', 'r', encoding='utf-8') as file:
+        html_template = file.read()
+
+    html_artigos = ""
+
+    for i in range(5):
+        article_html = f"""
+            <div class="article">
+                <h2>{df['title'].iloc[i]}</h2>
+                <p>{df['abstract'].iloc[i]}</p>
+                <p class="date">Data de Publicação: {df['publication_date'].iloc[i]}</p>
+                <p class="doi">DOI: <a href="{df['doi'].iloc[i]}">{df['doi'].iloc[i]}</a></p>
+            </div>
+        """
+        html_artigos += article_html
+
+    html_template = html_template.replace("<!-- ARTICLES_GO_HERE -->", html_artigos)
+
+    with open('./newsletter_final.html', 'w', encoding='utf-8') as file:
+        file.write(html_template)
 
 #--------------------------------------------------------------------------------------------------------------------
 
@@ -123,11 +138,13 @@ st.write('## Preferências Gerais')
 areas = st.multiselect(
     'Áreas de interesse:',
     [
-    'Political Science','Philosophy','Economics','Business','Psychology',
-    'Mathematics','Medicine','Biology','Computer Science','Geology',
-    'Chemistry','Art','Sociology','Engineering','Geography',
-    'History','Materials Science','Physics','Environmental Science'
-    ],
+     'Art', 'Biology', 'Business', 'Chemistry', 
+     'Computer Science', 'Economics', 'Engineering', 
+     'Environmental Science', 'Geography', 'Geology', 
+     'History', 'Materials Science', 'Mathematics', 
+     'Medicine', 'Philosophy', 'Physics', 
+     'Political Science', 'Psychology', 'Sociology'
+     ],
     placeholder='Escolha até 3 áreas',
     max_selections=3)
 acesso_aberto = st.selectbox(
@@ -145,6 +162,9 @@ termos = st_tags(
 
 
 if st.button("Recomende"):
-    st.text(filtrar_escolha(areas,acesso_aberto,termos,['Econometrics','Regression analysis']))
+    df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
+    print(df)
+    criar_html_com_artigos(df)
+    
 
 

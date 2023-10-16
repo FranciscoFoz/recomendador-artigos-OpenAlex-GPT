@@ -5,6 +5,8 @@
 pandas==1.5.3
 requests==2.30.0
 pyarrow==6.00
+markdown==3.5
+bs4==4.12.2
 
 # backwards compatibility
 

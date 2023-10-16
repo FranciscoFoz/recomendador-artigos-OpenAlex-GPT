@@ -1,55 +1,63 @@
-/* styles.css */
-
+/* Estilo geral da página */
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 80%;
-    max-width: 600px;
+  }
+  
+  .container {
+    max-width: 50%;
     margin: 0 auto;
+    background-color: #fff;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #0078d4;
-    font-size: 16px;
-}
-
-p {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo do cabeçalho */
+  h2 {
     color: #333;
-}
-
-.article {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.article h2 {
-    color: #0078d4;
-    margin: 10px 0;
-}
-
-.article p {
-    color: #555;
-    margin: 5px 0;
-}
-
-.article .date {
-    color: #777;
-    font-size: 12px;
-}
-
-.article .doi {
-    color: #555;
-    font-size: 12px;
-}
+    text-align: left;
+  }
+  
+  /* Estilo dos artigos */
+  h3 {
+    color: #0073e6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #0073e6;
+    word-wrap: break-word;
+  }
+  
+  p {
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  /* Estilo para smartphones */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  }
+  

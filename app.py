@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_tags import st_tags, st_tags_sidebar
 import pandas as pd
+import markdown
+from bs4 import BeautifulSoup
 
 pd.options.display.max_columns = 999
 
@@ -90,25 +92,60 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     return df_filtrado_top
 
 
+import markdown
+
+def markdown_to_html(input_file):
+
+    with open(input_file, 'r', encoding='utf-8') as md_file:
+        markdown_text = md_file.read()
+        
+    html = markdown.markdown(markdown_text)
+    # Incluir a ligação para o arquivo CSS
+    html = f"""
+    <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+    <div class="container">
+    {html}
+    </div>
+    </body>
+    </html>
+    """
+    
+    soup = BeautifulSoup(html, 'html5lib')
+
+    html_formatado = soup.prettify()
+    
+    with open('newsletter_final.html', 'w', encoding='utf-8') as html_file:
+        html_file.write(html_formatado)
+
+
 def criar_markdown_com_artigos(df):
-    markdown_content = '# Newsletter de Artigos Científicos\n\n## Confira os artigos científicos recomendados nesta edição da nossa newsletter:\n\n'
+    markdown_content = '## Newsletter de Artigos Científicos\n\n Confira os artigos científicos recomendados nesta edição da nossa newsletter:\n\n'
 
     for i in range(5):
-        article_markdown = f"## Artigo {i + 1}\n"
-        article_markdown += f"**Título**: [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
-        article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
+        article_markdown = f"### [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
         article_markdown += f"**Data de Publicação**: {df['publication_date'].iloc[i]}\n\n"
-        article_markdown += f"**DOI**: {df['doi'].iloc[i]}\n\n"
+        article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
+
         markdown_content += article_markdown
 
-    # Nome do arquivo de saída
-    output_file = 'newsletter_final.md'
+    markdown_file_name = 'newsletter_final.md'
 
-    # Escrever o conteúdo no arquivo Markdown
-    with open(output_file, 'w', encoding='utf-8') as file:
+
+    with open(markdown_file_name, 'w', encoding='utf-8') as file:
         file.write(markdown_content)
 
+    # Converter o Markdown para HTML 
+    markdown_to_html(markdown_file_name)
+
     return markdown_content
+
+
+
+        
 #--------------------------------------------------------------------------------------------------------------------
 
 #IMPORTANDO DADOS
@@ -153,7 +190,7 @@ st.write('## Termos Chave de Interesse')
 termos = st_tags(
     label='Entre com até 3 termo-chave de seu interesse:',
     text='Pressione "enter" para adicionar mais',
-    value=['Inteligência Artificial', 'Physical activity'],
+    value=['Artificial Intelligence', 'Physical activity'],
     maxtags = 3,
     key='1')
 

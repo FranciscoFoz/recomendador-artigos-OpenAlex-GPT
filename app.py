@@ -177,13 +177,15 @@ df.rename(columns=colunas_pt_br, inplace=True)
 #CONFIGURAÇÕES INICIAIS
 st.set_page_config(
     layout='wide',
-    page_title='recomendador-papers',
+    page_title='recomendador-artigos-cientificos',
     page_icon=':page_facing_up:'
 )
 
 
 #LOGO E TÍTULO DO APP
-st.title('RECOMENDADOR DE PAPERS')
+st.title('RECOMENDADOR DE ARTIGOS CIENTÍFICOS')
+st.image('reports/figures/open-alex.png')
+
 
 
 ## BOTÕES DE SELEÇÃO APP
@@ -215,9 +217,9 @@ termos = st_tags(
 
 
 if st.button("Recomende"):
-    if areas != None and len(termos) != 0:
+    if areas and len(termos) != 0:
         df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
         st.markdown(criar_markdown_com_artigos(df))
-        print(type(termos))
+        print(areas)
     else:
         st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')

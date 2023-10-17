@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_tags import st_tags, st_tags_sidebar
+from streamlit_tags import st_tags
 import pandas as pd
 import markdown
 from bs4 import BeautifulSoup
@@ -92,7 +92,6 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     return df_filtrado_top
 
 
-import markdown
 
 def markdown_to_html(input_file):
 
@@ -152,6 +151,28 @@ def criar_markdown_com_artigos(df):
 
 df = pd.read_parquet('./data/processed/df_concatenado.parquet')
 
+colunas_pt_br = {
+    'Computer science': 'Ciência da Computação',
+    'Mathematics': 'Matemática',
+    'Physics':'Física',
+    'Biology':'Biologia',
+    'Chemistry':'Química',
+    'Political science':'Ciências Políticas',
+    'Engineering':'Engenharia',
+    'Materials science':'Ciência dos Materiais',
+    'Philosophy':'Filosofia',
+    'Business':'Administração e Negócios',
+    'Psychology':'Psicologia',
+    'Art':'Artes',
+    'Medicine':'Medicina',
+    'Geography':'Geografia',
+    'Geology':'Geologia',
+    'Economics':'Economia',
+    'Sociology':'Sociologia',
+    'Environmental science':'Ciências Ambientais',
+    'History':'História'
+    }
+df.rename(columns=colunas_pt_br, inplace=True) 
 
 #CONFIGURAÇÕES INICIAIS
 st.set_page_config(
@@ -172,15 +193,13 @@ st.write('## Preferências Gerais')
 areas = st.multiselect(
     'Áreas de interesse:',
     [
-     'Art', 'Biology', 'Business', 'Chemistry', 
-     'Computer Science', 'Economics', 'Engineering', 
-     'Environmental Science', 'Geography', 'Geology', 
-     'History', 'Materials Science', 'Mathematics', 
-     'Medicine', 'Philosophy', 'Physics', 
-     'Political Science', 'Psychology', 'Sociology'
-     ],
+        'Administração e Negócios', 'Artes', 'Biologia', 'Ciência da Computação', 'Ciência dos Materiais',
+        'Ciências Ambientais', 'Ciências Políticas', 'Economics', 'Engenharia', 'Filosofia', 'Física', 
+        'Geografia', 'Geologia', 'História', 'Matemática', 'Medicina', 'Psicologia', 'Química', 'Sociologia'
+        ],
     placeholder='Escolha até 3 áreas',
     max_selections=3)
+
 acesso_aberto = st.selectbox(
     'Você prefere receber apenas artigos de acesso aberto?',
     ('Sim', 'Não'))
@@ -188,16 +207,17 @@ acesso_aberto = st.selectbox(
 st.write('## Termos Chave de Interesse')
 
 termos = st_tags(
-    label='Entre com até 3 termo-chave de seu interesse:',
+    label='Entre com até 3 termo-chave de seu interesse (em português ou inglês):',
     text='Pressione "enter" para adicionar mais',
-    value=['Artificial Intelligence', 'Physical activity'],
+    value=['Inteligência artificial', 'Physical activity'],
     maxtags = 3,
     key='1')
 
 
 if st.button("Recomende"):
-    df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
-    st.markdown(criar_markdown_com_artigos(df))
-    print(criar_markdown_com_artigos(df))
-
-
+    if areas != None and len(termos) != 0:
+        df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
+        st.markdown(criar_markdown_com_artigos(df))
+        print(type(termos))
+    else:
+        st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')

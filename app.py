@@ -92,37 +92,38 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     return df_filtrado_top
 
 
+    #Não foi implementada inicialmente
+    '''
+    def markdown_to_html(input_file):
 
-def markdown_to_html(input_file):
-
-    with open(input_file, 'r', encoding='utf-8') as md_file:
-        markdown_text = md_file.read()
+        with open(input_file, 'r', encoding='utf-8') as md_file:
+            markdown_text = md_file.read()
+            
+        html = markdown.markdown(markdown_text)
+        # Incluir a ligação para o arquivo CSS
+        html = f"""
+        <html>
+        <head>
+            <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+        <div class="container">
+        {html}
+        </div>
+        </body>
+        </html>
+        """
         
-    html = markdown.markdown(markdown_text)
-    # Incluir a ligação para o arquivo CSS
-    html = f"""
-    <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-    <div class="container">
-    {html}
-    </div>
-    </body>
-    </html>
-    """
-    
-    soup = BeautifulSoup(html, 'html5lib')
+        soup = BeautifulSoup(html, 'html5lib')
 
-    html_formatado = soup.prettify()
-    
-    with open('newsletter_final.html', 'w', encoding='utf-8') as html_file:
-        html_file.write(html_formatado)
-
+        html_formatado = soup.prettify()
+        
+        with open('newsletter_final.html', 'w', encoding='utf-8') as html_file:
+            html_file.write(html_formatado)
+    '''
 
 def criar_markdown_com_artigos(df):
-    markdown_content = '## Newsletter de Artigos Científicos\n\n Confira os artigos científicos recomendados nesta edição da nossa newsletter:\n\n'
+    markdown_content = '## Recomendações\n\n Confira os artigos científicos recomendados para você:\n\n'
 
     for i in range(5):
         article_markdown = f"### [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
@@ -130,15 +131,6 @@ def criar_markdown_com_artigos(df):
         article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
 
         markdown_content += article_markdown
-
-    markdown_file_name = 'newsletter_final.md'
-
-
-    with open(markdown_file_name, 'w', encoding='utf-8') as file:
-        file.write(markdown_content)
-
-    # Converter o Markdown para HTML 
-    markdown_to_html(markdown_file_name)
 
     return markdown_content
 
@@ -220,6 +212,5 @@ if st.button("Recomende"):
     if areas and len(termos) != 0:
         df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
         st.markdown(criar_markdown_com_artigos(df))
-        print(areas)
     else:
         st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')

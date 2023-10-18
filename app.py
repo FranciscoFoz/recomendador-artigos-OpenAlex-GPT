@@ -72,7 +72,7 @@ def normalizar_score(df):
 
     return df
 
-def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
+def filtrar_escolha(areas,acesso_aberto,termo):
     
     df_filtrado = filtrar_dataframe_por_termos(df,areas)
 
@@ -82,7 +82,7 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
 
     df_filtrado = atribuir_fator_termo_score(df_filtrado,termo)
 
-    df_filtrado = atribuir_fator_termo_similar_score(df_filtrado,termo_similar)
+    #df_filtrado = atribuir_fator_termo_similar_score(df_filtrado,termo_similar)
 
     df_filtrado = normalizar_score(df_filtrado)
     
@@ -210,7 +210,8 @@ termos = st_tags(
 
 if st.button("Recomende"):
     if areas and len(termos) != 0:
-        df = filtrar_escolha(areas,acesso_aberto,termos,['Nature','Oral'])
+        df = filtrar_escolha(areas,acesso_aberto,termos)
         st.markdown(criar_markdown_com_artigos(df))
+        print(criar_markdown_com_artigos(df))
     else:
         st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')

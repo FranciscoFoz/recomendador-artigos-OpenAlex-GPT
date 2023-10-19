@@ -1,8 +1,9 @@
 import streamlit as st
 from streamlit_tags import st_tags
 import pandas as pd
-import markdown
-from bs4 import BeautifulSoup
+#import markdown
+#from bs4 import BeautifulSoup
+import json
 
 pd.options.display.max_columns = 999
 
@@ -134,6 +135,15 @@ def criar_markdown_com_artigos(df):
 
     return markdown_content
 
+def chave_open_ai():
+    
+    with open('../../credentials_open_ai.json','r') as json_file:
+        dados = json.load(json_file)
+        api_key = dados.get('OPEN_AI_API_KEY')
+        
+        
+    return api_key    
+
 
 
         
@@ -188,7 +198,7 @@ areas = st.multiselect(
     'Áreas de interesse:',
     [
         'Administração e Negócios', 'Artes', 'Biologia', 'Ciência da Computação', 'Ciência dos Materiais',
-        'Ciências Ambientais', 'Ciências Políticas', 'Economics', 'Engenharia', 'Filosofia', 'Física', 
+        'Ciências Ambientais', 'Ciências Políticas', 'Economia', 'Engenharia', 'Filosofia', 'Física', 
         'Geografia', 'Geologia', 'História', 'Matemática', 'Medicina', 'Psicologia', 'Química', 'Sociologia'
         ],
     placeholder='Escolha até 3 áreas',

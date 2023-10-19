@@ -188,7 +188,7 @@ areas = st.multiselect(
     'Áreas de interesse:',
     [
         'Administração e Negócios', 'Artes', 'Biologia', 'Ciência da Computação', 'Ciência dos Materiais',
-        'Ciências Ambientais', 'Ciências Políticas', 'Economics', 'Engenharia', 'Filosofia', 'Física', 
+        'Ciências Ambientais', 'Ciências Políticas', 'Economia', 'Engenharia', 'Filosofia', 'Física', 
         'Geografia', 'Geologia', 'História', 'Matemática', 'Medicina', 'Psicologia', 'Química', 'Sociologia'
         ],
     placeholder='Escolha até 3 áreas',

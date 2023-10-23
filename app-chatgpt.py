@@ -220,7 +220,7 @@ termos = st_tags(
 
 if st.button("Recomende"):
     if areas and len(termos) != 0:
-        df = filtrar_escolha(areas,acesso_aberto,termos,['Data preprocessing'])
+        df = filtrar_escolha(areas,acesso_aberto,termos,['Regression analysis'])
         st.markdown(criar_markdown_com_artigos(df))
         print(criar_markdown_com_artigos(df))
     else:

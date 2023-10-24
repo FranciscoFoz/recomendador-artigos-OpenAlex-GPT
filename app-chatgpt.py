@@ -225,3 +225,4 @@ if st.button("Recomende"):
         print(criar_markdown_com_artigos(df))
     else:
         st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')
+

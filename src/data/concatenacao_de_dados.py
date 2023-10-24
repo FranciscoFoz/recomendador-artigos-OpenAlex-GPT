@@ -12,6 +12,7 @@ def concatenar_arquivos_parquet(folder_path):
             file_path = os.path.join(folder_path, filename)
             df = pd.read_parquet(file_path)
             dataframes.append(df)
+            
 
     df_concatenado = pd.concat(dataframes, ignore_index=True)
     
@@ -24,4 +25,4 @@ def concatenar_arquivos_parquet(folder_path):
 
 #EXECUÇÃO
 
-concatenar_arquivos_parquet('datasets_2023-10-02_to_2023-10-08_processados')
+concatenar_arquivos_parquet('data/interim/datasets_2023-10-02_to_2023-10-08_processados')

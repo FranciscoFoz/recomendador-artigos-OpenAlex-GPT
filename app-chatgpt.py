@@ -4,6 +4,8 @@ import pandas as pd
 #import markdown
 #from bs4 import BeautifulSoup
 import json
+import openai
+from timeout_decorator import timeout
 
 pd.options.display.max_columns = 999
 
@@ -135,9 +137,10 @@ def criar_markdown_com_artigos(df):
 
     return markdown_content
 
+
 def chave_open_ai():
     
-    with open('../../credentials_open_ai.json','r') as json_file:
+    with open('../../../credentials_open_ai.json','r') as json_file:
         dados = json.load(json_file)
         api_key = dados.get('OPEN_AI_API_KEY')
         
@@ -145,9 +148,73 @@ def chave_open_ai():
     return api_key    
 
 
+def chama_api_gera_termos(termo):
+    
+    resposta = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                {
+                    "role": "system",
+                    "content": "Você é uma bibliotecária, especialista em linguagem documentária (tesauros)."
+                },
+                {
+                    "role": "user",
+                    "content": f"A partir desses termos {termo}. \nGere 5 termos relacionados (como um tesauro) para cada um deles, em inglês e suas respectivas traduções em português, mas retorne todos em conjunto.\n\nResponda com uma única lista Python todos os termos.\n\nComo nesse exemplo: \n['Artificial Intelligence,'Inteligência Artificial']\n\nNão responda mais nada além da lista."
+
+                },
+                ],
+                temperature=1.05,
+                max_tokens=256,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop=["30"]
+            )
+    return resposta
+
+
+@timeout(20)  # Define um limite de tempo de 20 segundos para cada tentativa
+def chama_api_com_tempo_limite(termo):
+    resposta = chama_api_gera_termos(termo)
+    return resposta
+
+
+def gera_termos_relacionados(termo):
+    tentativas = 0
+
+    while tentativas < 3:
+        tentativas += 1
+
+        try:
+            resposta = chama_api_com_tempo_limite(termo)
+            
+            termos_relacionados = resposta.get('choices')[0].get('message').get('content')
+            lista_termos_relacionados = eval(termos_relacionados)
+            
+            return lista_termos_relacionados
+
+        except TimeoutError:
+            print("Tempo limite excedido. Tentando novamente...")
+            continue 
+        
+        except SyntaxError:
+            print("Erro de sintaxe. Tentando novamente...")
+            continue 
+        
+        except openai.error.APIError as error:
+            print(f'Erro de API. {error}')
+
+    print("Número máximo de tentativas alcançado. Não foi possível obter uma resposta.")
+    return None
+
 
         
 #--------------------------------------------------------------------------------------------------------------------
+
+
+#VALIDA CHAVE OPEN AI
+openai.api_key = chave_open_ai()
+
 
 #IMPORTANDO DADOS
 
@@ -220,7 +287,7 @@ termos = st_tags(
 
 if st.button("Recomende"):
     if areas and len(termos) != 0:
-        df = filtrar_escolha(areas,acesso_aberto,termos,['Regression analysis'])
+        df = filtrar_escolha(areas,acesso_aberto,termos,gera_termos_relacionados(termos))
         st.markdown(criar_markdown_com_artigos(df))
         print(criar_markdown_com_artigos(df))
     else:

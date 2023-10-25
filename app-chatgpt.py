@@ -140,7 +140,7 @@ def criar_markdown_com_artigos(df):
 
 def chave_open_ai():
     
-    with open('../../../credentials_open_ai.json','r') as json_file:
+    with open('../../credentials_open_ai.json','r') as json_file:
         dados = json.load(json_file)
         api_key = dados.get('OPEN_AI_API_KEY')
         
@@ -283,11 +283,12 @@ termos = st_tags(
     value=['Inteligência artificial', 'Physical activity'],
     maxtags = 3,
     key='1')
-
+print(termos)
 
 if st.button("Recomende"):
     if areas and len(termos) != 0:
-        df = filtrar_escolha(areas,acesso_aberto,termos,gera_termos_relacionados(termos))
+        lista_termos_relacionados = gera_termos_relacionados(termos)
+        df = filtrar_escolha(areas,acesso_aberto,termos,lista_termos_relacionados)
         st.markdown(criar_markdown_com_artigos(df))
         print(criar_markdown_com_artigos(df))
     else:

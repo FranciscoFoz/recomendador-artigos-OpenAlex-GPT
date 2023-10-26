@@ -5,7 +5,6 @@ import pandas as pd
 #from bs4 import BeautifulSoup
 import json
 import openai
-from timeout_decorator import timeout
 
 pd.options.display.max_columns = 999
 
@@ -126,14 +125,20 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
     '''
 
 def criar_markdown_com_artigos(df):
-    markdown_content = '## Recomendações\n\n Confira os artigos científicos recomendados para você:\n\n'
+    artigos = ''
 
     for i in range(5):
         article_markdown = f"### [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
         article_markdown += f"**Data de Publicação**: {df['publication_date'].iloc[i]}\n\n"
         article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
 
-        markdown_content += article_markdown
+        artigos += article_markdown
+
+    return artigos
+
+def criar_markdown_com_artigos(artigos,paragrafo_inicial):
+    
+    markdown_content = f'## Recomendações\n\n Olá,\n{paragrafo_inicial}\n\n{artigos}'
 
     return markdown_content
 
@@ -159,7 +164,17 @@ def chama_api_gera_termos(termo):
                 },
                 {
                     "role": "user",
-                    "content": f"A partir desses termos {termo}. \nGere 5 termos relacionados (como um tesauro) para cada um deles, em inglês e suas respectivas traduções em português, mas retorne todos em conjunto.\n\nResponda com uma única lista Python todos os termos.\n\nComo nesse exemplo: \n['Artificial Intelligence,'Inteligência Artificial']\n\nNão responda mais nada além da lista."
+                    "content": f'''
+                        A partir dessa lista de termos {termo}.
+                        Gere pelo menos 5 termos relacionados (como um tesauro) para cada um, em inglês e em português, mas retorne todos em conjunto.
+                        
+                        Responda com uma única lista Python todos os termos.
+                        
+                        Como nesse exemplo:
+                        ['Artificial Intelligence,'Inteligência Artificial']
+                        
+                        Não responda mais nada além da lista.
+                        '''
 
                 },
                 ],
@@ -167,17 +182,10 @@ def chama_api_gera_termos(termo):
                 max_tokens=256,
                 top_p=1,
                 frequency_penalty=0,
-                presence_penalty=0,
+                presence_penalty=1,
                 stop=["30"]
             )
     return resposta
-
-
-@timeout(20)  # Define um limite de tempo de 20 segundos para cada tentativa
-def chama_api_com_tempo_limite(termo):
-    resposta = chama_api_gera_termos(termo)
-    return resposta
-
 
 def gera_termos_relacionados(termo):
     tentativas = 0
@@ -186,17 +194,13 @@ def gera_termos_relacionados(termo):
         tentativas += 1
 
         try:
-            resposta = chama_api_com_tempo_limite(termo)
+            resposta = chama_api_gera_termos(termo)
             
             termos_relacionados = resposta.get('choices')[0].get('message').get('content')
             lista_termos_relacionados = eval(termos_relacionados)
             
             return lista_termos_relacionados
-
-        except TimeoutError:
-            print("Tempo limite excedido. Tentando novamente...")
-            continue 
-        
+       
         except SyntaxError:
             print("Erro de sintaxe. Tentando novamente...")
             continue 
@@ -288,6 +292,7 @@ print(termos)
 if st.button("Recomende"):
     if areas and len(termos) != 0:
         lista_termos_relacionados = gera_termos_relacionados(termos)
+        print(lista_termos_relacionados)
         df = filtrar_escolha(areas,acesso_aberto,termos,lista_termos_relacionados)
         st.markdown(criar_markdown_com_artigos(df))
         print(criar_markdown_com_artigos(df))

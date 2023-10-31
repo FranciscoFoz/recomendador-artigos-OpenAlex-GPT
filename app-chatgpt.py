@@ -124,25 +124,6 @@ def filtrar_escolha(areas,acesso_aberto,termo,termo_similar):
             html_file.write(html_formatado)
     '''
 
-def criar_markdown_com_artigos(df):
-    artigos = ''
-
-    for i in range(5):
-        article_markdown = f"### [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
-        article_markdown += f"**Data de Publicação**: {df['publication_date'].iloc[i]}\n\n"
-        article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
-
-        artigos += article_markdown
-
-    return artigos
-
-def criar_markdown_com_artigos(artigos,paragrafo_inicial):
-    
-    markdown_content = f'## Recomendações\n\n Olá,\n{paragrafo_inicial}\n\n{artigos}'
-
-    return markdown_content
-
-
 def chave_open_ai():
     
     with open('../../credentials_open_ai.json','r') as json_file:
@@ -151,6 +132,7 @@ def chave_open_ai():
         
         
     return api_key    
+
 
 
 def chama_api_gera_termos(termo):
@@ -187,6 +169,8 @@ def chama_api_gera_termos(termo):
             )
     return resposta
 
+
+
 def gera_termos_relacionados(termo):
     tentativas = 0
 
@@ -212,7 +196,99 @@ def gera_termos_relacionados(termo):
     return None
 
 
-        
+
+def criar_artigos(df):
+    artigos = ''
+
+    for i in range(5):
+        article_markdown = f"### [{df['title'].iloc[i]}]({df['doi'].iloc[i]})\n\n"
+        article_markdown += f"**Data de Publicação**: {df['publication_date'].iloc[i]}\n\n"
+        article_markdown += f"**Resumo**: {df['abstract'].iloc[i]}\n\n"
+
+        artigos += article_markdown
+
+    return artigos
+
+
+
+def chama_api_gera_paragrafo(artigos):
+    
+    resposta = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                {
+                    "role": "system",
+                    "content": "Você é uma bibliotecária, especialista em linguagem documentária (tesauros)."
+                },
+                {
+                    "role": "user",
+                    "content": f'''
+                        Sou uma biblioteca que gostaria de recomendar novos papers para os usuários. 
+
+                        A partir desses papers publicados na última semana:
+
+                        [
+                        {artigos}
+                        ]
+
+                        Crie um parágrafo inicial de um e-mail resumindo o conteúdo geral de todos os papers, como uma newsletter científica fazendo publicidade.
+
+                        Dê continuidade a esse início:
+                        
+                        """
+                        Nossa biblioteca está de volta para trazer as últimas descobertas e insights fresquinhos da pesquisa científica publicada na última semana. 
+                        """
+                        
+                        Escreva apenas um parágrafo.
+                         
+                        Seja conciso.
+                        
+                        '''
+                },
+                ],
+                temperature=1,
+                max_tokens=256,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=1,
+                stop=[]
+            )
+    
+    paragrafo = resposta.get('choices')[0].get('message').get('content')
+    
+    return paragrafo
+
+
+
+def formata_paragrafo(paragrafo):
+    
+    texto = paragrafo.replace('. ','.\n')
+
+    linhas = texto.splitlines()
+    linhas.insert(-1, '') #Adicionando espaço duplo na última linha
+
+    texto_formatado = '\n'.join(linhas)
+    
+    return texto_formatado
+
+
+
+def criar_markdown_com_artigos(artigos,paragrafo_inicial):
+    
+    markdown_content = f'## Recomendações\n\n Olá,\n\n{paragrafo_inicial}\n\n{artigos}'
+
+    return markdown_content
+
+
+def criar_paragrafo_recomendacao(df):
+    
+    artigos = criar_artigos(df)
+    paragrafo = chama_api_gera_paragrafo(artigos)
+    paragrafo_formatado = formata_paragrafo(paragrafo)
+    markdown_content = criar_markdown_com_artigos(artigos,paragrafo_formatado)
+
+    return markdown_content
+
 #--------------------------------------------------------------------------------------------------------------------
 
 
@@ -292,10 +368,12 @@ print(termos)
 if st.button("Recomende"):
     if areas and len(termos) != 0:
         lista_termos_relacionados = gera_termos_relacionados(termos)
-        print(lista_termos_relacionados)
+        print(10*'+','TERMOS RELACIONADOS',10*'+',f'\n{lista_termos_relacionados}')
+        
         df = filtrar_escolha(areas,acesso_aberto,termos,lista_termos_relacionados)
-        st.markdown(criar_markdown_com_artigos(df))
-        print(criar_markdown_com_artigos(df))
+        
+        st.markdown(criar_paragrafo_recomendacao(df))
+
     else:
         st.write('Escolha uma área e, pelo menos, um termo-chave de interesse :confused:')
 

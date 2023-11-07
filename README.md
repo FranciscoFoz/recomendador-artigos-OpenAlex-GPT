@@ -86,6 +86,11 @@ Com uso de IA
 
 [Sem uso de IA](https://recomendador-artigos-openalex-gpt.streamlit.app/)
 
-**Acesse a aprensentação completa [aqui](reports/ChatGPT + OpenAlex.pdf).**
+**Acesse a aprensentação completa [aqui](https://github.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/blob/main/reports/ChatGPT%20%2B%20OpenAlex.pdf).**
 
 ## IMAGENS
+
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/home_20231030.png)
+
+
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/recomendacoes_20231030.png)

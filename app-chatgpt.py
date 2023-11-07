@@ -55,10 +55,10 @@ def atribuir_fator_termo_similar_score(df, termos_similares):
     
     for term in termos_similares:
         mask = df_copy['title'].str.upper().str.contains(term.upper())
-        df_copy.loc[mask, 'score'] *= 1.5
+        df_copy.loc[mask, 'score'] *= 1.25
         
         mask = df_copy['abstract'].str.upper().str.contains(term.upper())
-        df_copy.loc[mask, 'score'] *= 1.25
+        df_copy.loc[mask, 'score'] *= 1.125
     
     df_copy = df_copy.sort_values(by='score', ascending=False)
     
@@ -218,20 +218,20 @@ def chama_api_gera_paragrafo(artigos):
                 messages=[
                 {
                     "role": "system",
-                    "content": "Você é uma bibliotecária, especialista em linguagem documentária (tesauros)."
+                    "content": "Você é uma bibliotecária, especialista em serviço de referência e marketing de unidades de informação."
                 },
                 {
                     "role": "user",
                     "content": f'''
-                        Sou uma biblioteca que gostaria de recomendar novos papers para os usuários. 
+                        Sou uma biblioteca que gostaria de recomendar novos artigos científicos para os usuários. 
 
-                        A partir desses papers publicados na última semana:
+                        A partir desses artigos científicos publicados na última semana:
 
                         [
                         {artigos}
                         ]
 
-                        Crie um parágrafo inicial de um e-mail resumindo o conteúdo geral de todos os papers, como uma newsletter científica fazendo publicidade.
+                        Crie um parágrafo inicial de um e-mail resumindo o conteúdo geral de todos os artigos científicos, como uma newsletter científica fazendo publicidade.
 
                         Dê continuidade a esse início:
                         

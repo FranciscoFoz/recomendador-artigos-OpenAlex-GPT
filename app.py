@@ -1,8 +1,8 @@
 import streamlit as st
 from streamlit_tags import st_tags
 import pandas as pd
-import markdown
-from bs4 import BeautifulSoup
+#import markdown
+#from bs4 import BeautifulSoup
 
 pd.options.display.max_columns = 999
 

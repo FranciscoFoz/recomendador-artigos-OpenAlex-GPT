@@ -90,7 +90,7 @@ Com uso de IA
 
 ## IMAGENS
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/home_20231030.png)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/home_20231030.png?token=GHSAT0AAAAAAB3JNZ3U3CABH2VPGK6DB32KZKKZYVQ)
 
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/recomendacoes_20231030.png)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/recomendacoes_20231030.png?token=GHSAT0AAAAAAB3JNZ3UQPYCZZQEF7MYFNIGZKKZZJQ)

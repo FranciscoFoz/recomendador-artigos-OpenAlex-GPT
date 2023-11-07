@@ -33,30 +33,29 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 2. **Entendimento do Usuário:**
     - Entender as necessidades informacionais do usuário é crucial para lhe recomendar informações. Para esse projeto foi questionado:
 
-    1. Área de conhecimento que tem interesse.
-    2. Tipo de acesso do artigo (aberto ou fechado)
-    3. Termos chave de interesse
+        1. Área de conhecimento que tem interesse.
+        2. Tipo de acesso do artigo (aberto ou fechado)
+        3. Termos chave de interesse
 
     - Utilizou-se da ferramenta do Streamlit como forma de protótipo do front-end da aplicação.
+
 
 3. **Recomendações Customizadas:**
     - A partir dos artigos coletados e entendimento do usuário, foi proposto um sistema de pontuação, para que se possa rankear os artigos e recomendar os N primeiros.
 
     O sistema leva em conta a regra de priorização:
 
-    1. Score básico: Maior probabilidade da área escolhida
-    2. > Termo inserido pelo usuário no título
-    3. > Termo inserido pelo usuário no resumo
-    4. > Termo expandido pelo usuário no título
-    5. > Termo expandido pelo usuário no resumo
+        Score básico: Maior probabilidade da área escolhida 
+        > Termo inserido pelo usuário no título
+        > Termo inserido pelo usuário no resumo
+        > Termo expandido pelo usuário no título
+        > Termo expandido pelo usuário no resumo
 
     - É utilizado o ChatGPT para expandir os termos do usuário afim de se aumentar os termos relacionados e/ou sinônimos, afim de se melhorar a precisão e abrangência da descoberta de informação.
 
     - Utiliza-se também o ChatGPT para se criar um parágrafo inicial com um resumo de todos os artigos recomendados.
 
 
-
-### Recomendações customizadas
 
 
 

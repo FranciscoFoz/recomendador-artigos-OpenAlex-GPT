@@ -86,6 +86,6 @@ Com uso de IA
 
 [Sem uso de IA](https://recomendador-artigos-openalex-gpt.streamlit.app/)
 
-
+**Acesse a aprensentação completa [aqui](reports/ChatGPT + OpenAlex.pdf).**
 
 ## IMAGENS

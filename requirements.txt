@@ -2,6 +2,7 @@
 -e .
 
 # external requirements
+streamlit-tags==1.2.8
 pandas==1.5.3
 requests==2.30.0
 pyarrow==6.00

@@ -59,7 +59,7 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
         > Termo expandido pelo usuário no título
         > Termo expandido pelo usuário no resumo
 
-    - É utilizado o ChatGPT para expandir os termos do usuário afim de se aumentar os termos relacionados e/ou sinônimos, afim de se melhorar a precisão e abrangência da descoberta de informação.
+    - É utilizado o ChatGPT para expandir os termos do usuário afim de se aumentar os termos relacionados e/ou sinônimos e melhorar a precisão e abrangência da descoberta de informação.
 
     ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/expansor.jpg?token=GHSAT0AAAAAAB3JNZ3VIVE7DR64N2RCUYSOZKKZ64Q)
 
@@ -100,7 +100,7 @@ Com uso de IA
 
 [Sem uso de IA](https://recomendador-artigos-openalex-gpt.streamlit.app/)
 
-**Acesse a aprensentação completa [aqui](https://github.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/blob/main/reports/ChatGPT%20%2B%20OpenAlex.pdf).**
+🖼︎ **Acesse a apresentação completa [aqui](https://github.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/blob/main/reports/ChatGPT%20%2B%20OpenAlex.pdf).**
 
 ## IMAGENS
 

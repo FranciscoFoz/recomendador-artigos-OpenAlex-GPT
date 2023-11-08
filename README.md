@@ -46,7 +46,7 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
 3. **Recomendações Customizadas:**
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ranking_pontuacao.jpg?token=GHSAT0AAAAAAB3JNZ3UAT4ZEQXMV5EMFOMUZKKZ7AQ)
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ranking_pontuacao.jpg?token=GHSAT0AAAAAAB3JNZ3UAT4ZEQXMV5EMFOMUZKKZ7AQ)
 
 
     - A partir dos artigos coletados e entendimento do usuário, foi proposto um sistema de pontuação, para que se possa rankear os artigos e recomendar os N primeiros.

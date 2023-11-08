@@ -1,6 +1,14 @@
 # Potencializando a Descoberta de Informação com ChatGPT:
 ## Recomendações de artigos científicos da OpenAlex com assistência de IA Generativa
 
+| :placard: Vitrine.Dev |     |
+| -------------  | --- |
+| :sparkles: Nome        | **Potencializando a Descoberta de Informação com ChatGPT**
+| :label: Tecnologias | Python, ChatGPT
+| :rocket: URL         | 
+| :fire: Desafio     | 
+
+<!-- Inserir imagem com a #vitrinedev ao final do link -->
 ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png)
 
 Nossa sociedade atual está enfrentando um volume crescente de informações em todas as áreas, incluindo a pesquisa científica. Como podemos aprimorar a qualidade e a precisão das recomendações de artigos científicos, tudo isso de forma mais rápida? 

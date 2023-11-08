@@ -26,6 +26,10 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
 ## Fluxo do projeto
 
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema.jpg?token=GHSAT0AAAAAAB3JNZ3U5USB3S53BDLU47XSZKKZ7DA)
+
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema_com_GPT.jpg?token=GHSAT0AAAAAAB3JNZ3UHAOYDEJQF3HYV4LGZKKZ7EQ)
+
 1. **Coleta e Armazenamento de Dados:**
     - Coleta de dados dos artigos científicos mais recentes da Open Alex (última semana, por exemplo).
     - Armazenamento: para esse "projeto", apenas foi estruturado em uma única tabela todos os artigos sem duplicatas e formatado no padrão necessário. Para demais projetos, recomenda-se a inserção em um banco de dados normalizado.
@@ -41,6 +45,10 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
 
 3. **Recomendações Customizadas:**
+
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ranking_pontuacao.jpg?token=GHSAT0AAAAAAB3JNZ3UAT4ZEQXMV5EMFOMUZKKZ7AQ)
+
+
     - A partir dos artigos coletados e entendimento do usuário, foi proposto um sistema de pontuação, para que se possa rankear os artigos e recomendar os N primeiros.
 
     O sistema leva em conta a regra de priorização:
@@ -52,6 +60,10 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
         > Termo expandido pelo usuário no resumo
 
     - É utilizado o ChatGPT para expandir os termos do usuário afim de se aumentar os termos relacionados e/ou sinônimos, afim de se melhorar a precisão e abrangência da descoberta de informação.
+
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/expansor.jpg?token=GHSAT0AAAAAAB3JNZ3VIVE7DR64N2RCUYSOZKKZ64Q)
+
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/prompt_expansor.jpg?token=GHSAT0AAAAAAB3JNZ3UCOJQNLIKV4JTH4CCZKKZ66A)
 
     - Utiliza-se também o ChatGPT para se criar um parágrafo inicial com um resumo de todos os artigos recomendados.
 
@@ -78,6 +90,8 @@ Reais:
 - Custo por 1.000: R$1,43 a R$2,61
 - Custo por 10.000: R$143 a R$261
 - Custo por 100.000: R$1430 a R$2610
+
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/estimativa_total.jpg?token=GHSAT0AAAAAAB3JNZ3VKOOBZKTDEN3IM7HKZKKZ6RA)
 
 ## Links
 

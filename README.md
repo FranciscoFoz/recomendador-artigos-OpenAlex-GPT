@@ -1,6 +1,7 @@
 # Potencializando a Descoberta de Informação com ChatGPT:
 ## Recomendações de artigos científicos da OpenAlex com assistência de IA Generativa
 
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png?token=GHSAT0AAAAAAB3JNZ3UMC2CYAMQ6HRNUM3OZKK2SHA)
 
 Nossa sociedade atual está enfrentando um volume crescente de informações em todas as áreas, incluindo a pesquisa científica. Como podemos aprimorar a qualidade e a precisão das recomendações de artigos científicos, tudo isso de forma mais rápida? 
 

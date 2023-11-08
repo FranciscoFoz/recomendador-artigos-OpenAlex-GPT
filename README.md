@@ -1,7 +1,7 @@
 # Potencializando a Descoberta de Informação com ChatGPT:
 ## Recomendações de artigos científicos da OpenAlex com assistência de IA Generativa
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png?token=GHSAT0AAAAAAB3JNZ3UMC2CYAMQ6HRNUM3OZKK2SHA)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png)
 
 Nossa sociedade atual está enfrentando um volume crescente de informações em todas as áreas, incluindo a pesquisa científica. Como podemos aprimorar a qualidade e a precisão das recomendações de artigos científicos, tudo isso de forma mais rápida? 
 
@@ -27,9 +27,9 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
 ## Fluxo do projeto
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema.jpg?token=GHSAT0AAAAAAB3JNZ3U5USB3S53BDLU47XSZKKZ7DA)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema.jpg)
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema_com_GPT.jpg?token=GHSAT0AAAAAAB3JNZ3UHAOYDEJQF3HYV4LGZKKZ7EQ)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/sistema_com_GPT.jpg)
 
 1. **Coleta e Armazenamento de Dados:**
     - Coleta de dados dos artigos científicos mais recentes da Open Alex (última semana, por exemplo).
@@ -47,7 +47,7 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
 3. **Recomendações Customizadas:**
 
-    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ranking_pontuacao.jpg?token=GHSAT0AAAAAAB3JNZ3UAT4ZEQXMV5EMFOMUZKKZ7AQ)
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ranking_pontuacao.jpg)
 
 
     - A partir dos artigos coletados e entendimento do usuário, foi proposto um sistema de pontuação, para que se possa rankear os artigos e recomendar os N primeiros.
@@ -62,9 +62,9 @@ A ideia desse "projeto" não é desenvolver um produto novo, mas apenas treinar 
 
     - É utilizado o ChatGPT para expandir os termos do usuário afim de se aumentar os termos relacionados e/ou sinônimos e melhorar a precisão e abrangência da descoberta de informação.
 
-    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/expansor.jpg?token=GHSAT0AAAAAAB3JNZ3VIVE7DR64N2RCUYSOZKKZ64Q)
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/expansor.jpg)
 
-    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/prompt_expansor.jpg?token=GHSAT0AAAAAAB3JNZ3UCOJQNLIKV4JTH4CCZKKZ66A)
+    ![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/prompt_expansor.jpg)
 
     - Utiliza-se também o ChatGPT para se criar um parágrafo inicial com um resumo de todos os artigos recomendados.
 
@@ -92,7 +92,7 @@ Reais:
 - Custo por 10.000: R$143 a R$261
 - Custo por 100.000: R$1430 a R$2610
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/estimativa_total.jpg?token=GHSAT0AAAAAAB3JNZ3VKOOBZKTDEN3IM7HKZKKZ6RA)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/estimativa_total.jpg)
 
 ## Links
 
@@ -105,7 +105,7 @@ Com uso de IA
 
 ## IMAGENS
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/home_20231030.png?token=GHSAT0AAAAAAB3JNZ3UOQEWIULGNLVJGO34ZKK2FBQ)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/home_20231030.png)
 
 
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/recomendacoes_20231030.png?token=GHSAT0AAAAAAB3JNZ3VPKE7ITIR5CCWWJCKZKK2FCQ)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/recomendacoes_20231030.png)

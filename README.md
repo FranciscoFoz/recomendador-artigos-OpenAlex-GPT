@@ -9,7 +9,7 @@
 | :fire: Desafio     | 
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
-![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png)
+![](https://raw.githubusercontent.com/FranciscoFoz/recomendador-artigos-OpenAlex-GPT/main/reports/figures/ChatGPT%20%2B%20OpenAlex.png#vitrinedev)
 
 Nossa sociedade atual está enfrentando um volume crescente de informações em todas as áreas, incluindo a pesquisa científica. Como podemos aprimorar a qualidade e a precisão das recomendações de artigos científicos, tudo isso de forma mais rápida? 
 

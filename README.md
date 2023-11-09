@@ -27,7 +27,7 @@ Esse projeto nasceu, como forma de aplicar os conhecimentos obtidos nesse curso:
 
 Este projeto visa aprimorar meu conhecimento em inteligência artificial generativa e programação, construindo um protótipo de ferramenta utilitária para recomendar artigos científicos personalizados.
 
-## Disclaimer
+## Ressalva
 
 Este projeto utiliza IA para aprimorar a precisão das recomendações de artigos científicos. Embora seja possível implementar o projeto sem a IA, a funcionalidade central depende dela. Além disso, o uso de fontes diferentes da OpenAlex também é viável (inclusive de Repositórios).
 
